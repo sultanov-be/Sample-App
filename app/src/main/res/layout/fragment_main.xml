@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainFragment">
+    tools:context=".ui.main.MainFragment">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view"
@@ -26,6 +26,14 @@
         android:text="@string/sort_by"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/create_btn"
+        style="@style/ButtonStyle"
+        android:text="@string/create"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/sort_btn"
+        app:layout_constraintEnd_toStartOf="@id/random_btn"/>
 
 
     <TextView
