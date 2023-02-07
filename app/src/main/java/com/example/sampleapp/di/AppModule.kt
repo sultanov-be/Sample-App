@@ -21,10 +21,8 @@ class AppModule {
             StudentDatabase::class.java,
             "student_database"
         )
-            .fallbackToDestructiveMigration()
+            .allowMainThreadQueries()
             .build()
-
-
     }
 
     @Singleton

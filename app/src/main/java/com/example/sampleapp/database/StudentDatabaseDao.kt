@@ -18,5 +18,5 @@ interface StudentDatabaseDao {
     fun clear()
 
     @Query("SELECT * FROM student_list_table ORDER BY studentId DESC")
-    fun getAllNights(): LiveData<List<Student>>
+    fun getAllStudents(): LiveData<List<Student>>
 }
