@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
-    private val viewModel by viewModels<MainViewModel>()
+    private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: FragmentMainBinding
 
     override fun onCreateView(
@@ -23,23 +23,26 @@ class MainFragment : Fragment() {
         binding = FragmentMainBinding.inflate(layoutInflater)
 
         binding.sortBtn.setOnClickListener {
-            TODO("SORT STUDENTS")
+            binding.textview.text = viewModel.getStudentByName("BEKA")
         }
 
         binding.randomBtn.setOnClickListener {
-            TODO("GENERATE STUDENTS")
+            viewModel.showStudents()
         }
 
-        binding.createBtn.setOnClickListener {
-            findNavController().navigate(R.id.goToCreate)
-        }
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel
+        viewModel.students.observe(viewLifecycleOwner){
+            binding.textview.text = viewModel.showStudents()
+        }
+
+        binding.createBtn.setOnClickListener {
+            findNavController().navigate(R.id.goToCreate)
+        }
     }
 
 }
