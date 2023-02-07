@@ -27,11 +27,6 @@ class MainFragment : Fragment() {
             binding.textview.text = viewModel.getStudentByName("BEKA")
         }
 
-        binding.randomBtn.setOnClickListener {
-            viewModel.writeData(Student(null, "BEKA", "SULTANOV", "AUCA"))
-        }
-
-
         return binding.root
     }
 
@@ -39,6 +34,13 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.students.observe(viewLifecycleOwner){
             binding.textview.text = viewModel.showStudents()
+        }
+
+        binding.randomBtn.setOnClickListener {
+            viewModel.students.observe(viewLifecycleOwner){
+                binding.textview.text = viewModel.showStudents()
+            }
+            viewModel.writeData(Student(null, "BEKA", "SULTANOV", "AUCA"))
         }
 
         binding.createBtn.setOnClickListener {
