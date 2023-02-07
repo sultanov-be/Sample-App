@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.sampleapp.R
+import com.example.sampleapp.database.Student
 import com.example.sampleapp.databinding.FragmentMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +28,7 @@ class MainFragment : Fragment() {
         }
 
         binding.randomBtn.setOnClickListener {
-            viewModel.showStudents()
+            viewModel.writeData(Student(null, "BEKA", "SULTANOV", "AUCA"))
         }
 
 
