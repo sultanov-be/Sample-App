@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.sampleapp.R
+import com.example.sampleapp.database.Student
 import com.example.sampleapp.databinding.FragmentMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,11 +27,6 @@ class MainFragment : Fragment() {
             binding.textview.text = viewModel.getStudentByName("BEKA")
         }
 
-        binding.randomBtn.setOnClickListener {
-            viewModel.showStudents()
-        }
-
-
         return binding.root
     }
 
@@ -38,6 +34,13 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.students.observe(viewLifecycleOwner){
             binding.textview.text = viewModel.showStudents()
+        }
+
+        binding.randomBtn.setOnClickListener {
+            viewModel.students.observe(viewLifecycleOwner){
+                binding.textview.text = viewModel.showStudents()
+            }
+            viewModel.writeData(Student(null, "BEKA", "SULTANOV", "AUCA"))
         }
 
         binding.createBtn.setOnClickListener {
