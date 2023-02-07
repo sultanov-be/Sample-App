@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
-    private val viewModel by viewModels<MainViewModel>()
+    private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: FragmentMainBinding
 
     override fun onCreateView(
@@ -27,7 +27,7 @@ class MainFragment : Fragment() {
         }
 
         binding.randomBtn.setOnClickListener {
-            TODO("GENERATE STUDENTS")
+
         }
 
         binding.createBtn.setOnClickListener {
