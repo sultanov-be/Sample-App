@@ -12,7 +12,7 @@ interface StudentDatabaseDao {
     fun update(student: Student)
 
     @Query("SELECT * from student_list_table WHERE studentId = :key")
-    fun get(key: PrimaryKey): Student
+    fun get(key: Int): Student
 
     @Query("DELETE FROM student_list_table")
     fun clear()
