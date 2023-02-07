@@ -7,7 +7,19 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.sampleapp.ui.MainFragment"
+        android:name="com.example.sampleapp.ui.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/goToCreate"
+            app:destination="@id/createFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@+id/mainFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createFragment"
+        android:name="com.example.sampleapp.ui.create.CreateFragment"
+        android:label="fragment_create"
+        tools:layout="@layout/fragment_create" />
 </navigation>
