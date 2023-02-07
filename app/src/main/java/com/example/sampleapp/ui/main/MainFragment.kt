@@ -22,26 +22,14 @@ class MainFragment : Fragment() {
     ): View {
         binding = FragmentMainBinding.inflate(layoutInflater)
 
-//        val beka = Student(null, "BEKA", "SULA", "SFW")
-//        val sula = Student(null, "SULA", "SULA", "SSS")
-//        val niko = Student(null, "NIKO", "BELIK", "GTA")
-//        val roma = Student(null, "ROMA", "ROMAN", "GTS")
-//        viewModel.writeData(sula)
-//        viewModel.writeData(beka)
-//        viewModel.writeData(niko)
-//        viewModel.writeData(roma)
-
         binding.sortBtn.setOnClickListener {
             binding.textview.text = viewModel.getStudentByName("BEKA")
         }
 
         binding.randomBtn.setOnClickListener {
-             viewModel.showStudents()
+            viewModel.showStudents()
         }
 
-        binding.createBtn.setOnClickListener {
-            findNavController().navigate(R.id.goToCreate)
-        }
 
         return binding.root
     }
@@ -50,7 +38,10 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.students.observe(viewLifecycleOwner){
             binding.textview.text = viewModel.showStudents()
+        }
 
+        binding.createBtn.setOnClickListener {
+            findNavController().navigate(R.id.goToCreate)
         }
     }
 
