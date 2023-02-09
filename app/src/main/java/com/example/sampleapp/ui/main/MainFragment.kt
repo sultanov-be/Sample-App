@@ -6,9 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import com.example.sampleapp.R
-import com.example.sampleapp.database.Student
 import com.example.sampleapp.databinding.FragmentMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,28 +20,12 @@ class MainFragment : Fragment() {
     ): View {
         binding = FragmentMainBinding.inflate(layoutInflater)
 
-        binding.sortBtn.setOnClickListener {
-            binding.textview.text = viewModel.getStudentByName("BEKA")
-        }
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.students.observe(viewLifecycleOwner){
-            binding.textview.text = viewModel.showStudents()
-        }
-
-        binding.randomBtn.setOnClickListener {
-            viewModel.students.observe(viewLifecycleOwner){
-                binding.textview.text = viewModel.showStudents()
-            }
-            viewModel.writeData(Student(null, "BEKA", "SULTANOV", "AUCA"))
-        }
-
-        binding.createBtn.setOnClickListener {
-            findNavController().navigate(R.id.goToCreate)
         }
     }
 

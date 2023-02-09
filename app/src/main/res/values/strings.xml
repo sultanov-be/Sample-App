@@ -3,12 +3,8 @@
     <string name="generate_student">Show</string>
     <string name="sort_by">sort by</string>
     <string name="initial_state">Initial state</string>
-    <string name="create">create</string>
-    <string name="name">NAME:</string>
-    <string name="back">back</string>
-    <string name="type_name">Type name</string>
-    <string name="type_surname">Type surname</string>
-    <string name="surname">SURNAME:</string>
-    <string name="department">DEPARTMENT:</string>
-    <string name="type_depo">Type department:</string>
+    <string name="department">Department</string>
+    <string name="create_random_student">Создать рандомного ученика</string>
+    <string name="student">Student:</string>
+    <string name="sample_stud">Sultanov Bektur</string>
 </resources>

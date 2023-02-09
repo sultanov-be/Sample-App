@@ -13,43 +13,20 @@
         android:layout_margin="10dp"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/random_btn"
-        style="@style/ButtonStyle"
-        android:text="@string/generate_student"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/sort_btn"
-        style="@style/ButtonStyle"
-        android:text="@string/sort_by"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/create_btn"
-        style="@style/ButtonStyle"
-        android:text="@string/create"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/sort_btn"
-        app:layout_constraintEnd_toStartOf="@id/random_btn"/>
-
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/search_view"
-        app:layout_constraintBottom_toTopOf="@id/create_btn">
+        app:layout_constraintBottom_toTopOf="@id/generate_btn"/>
 
-        <TextView
-            android:id="@+id/textview"
-            style="@style/MainTextStyle"
-            android:text="@string/initial_state"
-            app:layout_constraintBottom_toTopOf="@id/random_btn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_view" />
-
-    </ScrollView>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/generate_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/create_random_student"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
