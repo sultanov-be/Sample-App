@@ -26,4 +26,13 @@
         <item>Avdonin</item>
         <item>Japarov</item>
     </string-array>
+    <string-array name="departments">
+        <item>SFW</item>
+        <item>AMI</item>
+        <item>SOC</item>
+        <item>COM</item>
+        <item>ICP</item>
+        <item>LAS</item>
+        <item>ECO</item>
+    </string-array>
 </resources>

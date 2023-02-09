@@ -15,7 +15,7 @@ class StudentAdapter internal constructor() : RecyclerView.Adapter<StudentAdapte
 
     private val differCallback = object : DiffUtil.ItemCallback<Student>() {
         override fun areItemsTheSame(oldItem:Student, newItem: Student): Boolean {
-            return oldItem.studentId == newItem.studentId
+            return oldItem.studentSecondName == newItem.studentSecondName
         }
 
         override fun areContentsTheSame(oldItem: Student, newItem: Student): Boolean {

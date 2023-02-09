@@ -7,6 +7,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
@@ -44,16 +45,47 @@ class MainFragment : Fragment() {
 
         val listNames = resources.getStringArray(R.array.names)
         val listSurNames = resources.getStringArray(R.array.surnames)
+        val listDepo = resources.getStringArray(R.array.departments)
 
         binding.generateBtn.setOnClickListener {
-            viewModel.insertStudent(Student(null, listNames[Random.nextInt(0,7)], listSurNames[Random.nextInt(0,7)], "SFW"))
+            viewModel.insertStudent(
+                Student(
+                    null,
+                    listNames[Random.nextInt(0, 7)],
+                    listSurNames[Random.nextInt(0, 7)],
+                    listDepo[Random.nextInt(0, 7)]
+                )
+            )
         }
 
         binding.sortBy.setOnClickListener {
             showDialog()
         }
 
-        observeData()
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    val list = viewModel.students.value
+                    val newlist = arrayListOf<Student>()
+                    list?.forEach {
+                        if (it.studentName.contains(query))
+                            newlist.add(it)
+                    }
+                    studentAdapter.differ.submitList(
+                        newlist
+                    )
+                }
+
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+
+
+        observeData(false)
     }
 
     private fun initAdapter() = with(binding) {
@@ -63,7 +95,11 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun observeData() = with(binding) {
+    private fun observeData(isReset: Boolean) = with(binding) {
+        if (isReset) {
+            studentAdapter.differ.submitList(null)
+        }
+
         viewModel.students.observe(viewLifecycleOwner) {
             try {
                 studentAdapter.differ.submitList(viewModel.students.value)
@@ -84,17 +120,17 @@ class MainFragment : Fragment() {
             byDepartmentBtn.setOnClickListener {
                 viewModel.getStudentsByDepartment()
                 dialog.dismiss()
-                observeData()
+                observeData(true)
             }
-            byNameBtn.setOnClickListener{
+            byNameBtn.setOnClickListener {
                 viewModel.getStudentsByName()
                 dialog.dismiss()
-                observeData()
+                observeData(true)
             }
             bySurnameBtn.setOnClickListener {
                 viewModel.getStudentsBySurname()
                 dialog.dismiss()
-                observeData()
+                observeData(true)
             }
         }
     }

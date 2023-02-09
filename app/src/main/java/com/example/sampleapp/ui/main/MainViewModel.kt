@@ -25,22 +25,22 @@ class MainViewModel @Inject constructor(
     }
 
     fun getStudentsByDepartment(): LiveData<List<Student>> {
-        viewModelScope.launch(dispatcher.main) {
+        viewModelScope.launch(dispatcher.io) {
             students = dataSource.getStudentsByDep()
         }
         return students
     }
 
     fun getStudentsBySurname(): LiveData<List<Student>> {
-        viewModelScope.launch(dispatcher.main) {
+        viewModelScope.launch(dispatcher.io) {
             students = dataSource.getStudentsBySurname()
         }
         return students
     }
 
     fun getStudentsByName(): LiveData<List<Student>> {
-        viewModelScope.launch(dispatcher.main) {
-            students = dataSource.getStudentsByDep()
+        viewModelScope.launch(dispatcher.io) {
+            students = dataSource.getAllStudents()
         }
         return students
     }
