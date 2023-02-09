@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">Sample App</string>
-    <string name="generate_student">Show</string>
-    <string name="sort_by">sort by</string>
-    <string name="initial_state">Initial state</string>
     <string name="department">Department</string>
-    <string name="create_random_student">Создать рандомного ученика</string>
-    <string name="student">Student:</string>
+    <string name="create_random_student">Generate a random student</string>
     <string name="sample_stud">Sultanov Bektur</string>
+    <string name="sort_by">Sort by</string>
+    <string name="by_department">BY department</string>
+    <string name="by_surname">By surname</string>
+    <string name="by_name">by name</string>
+    <string name="student">Student: </string>
     <string-array name="names">
         <item>Nikita</item>
         <item>Ruslan</item>

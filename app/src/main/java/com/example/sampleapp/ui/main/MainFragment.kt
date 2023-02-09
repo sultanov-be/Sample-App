@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import com.example.sampleapp.R
 import com.example.sampleapp.adapter.StudentAdapter
 import com.example.sampleapp.database.Student
+import com.example.sampleapp.databinding.BottomSheetBinding
 import com.example.sampleapp.databinding.FragmentMainBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.random.Random
 
@@ -22,6 +24,7 @@ class MainFragment : Fragment() {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: FragmentMainBinding
     private lateinit var studentAdapter: StudentAdapter
+    private lateinit var dialog: BottomSheetDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +49,10 @@ class MainFragment : Fragment() {
             viewModel.insertStudent(Student(null, listNames[Random.nextInt(0,7)], listSurNames[Random.nextInt(0,7)], "SFW"))
         }
 
+        binding.sortBy.setOnClickListener {
+            showDialog()
+        }
+
         observeData()
     }
 
@@ -66,4 +73,30 @@ class MainFragment : Fragment() {
             }
         }
     }
+
+    private fun showDialog() {
+        val binding = BottomSheetBinding.inflate(LayoutInflater.from(context))
+        dialog = BottomSheetDialog(requireContext())
+        dialog.setContentView(binding.root)
+        dialog.show()
+
+        with(binding) {
+            byDepartmentBtn.setOnClickListener {
+                viewModel.getStudentsByDepartment()
+                dialog.dismiss()
+                observeData()
+            }
+            byNameBtn.setOnClickListener{
+                viewModel.getStudentsByName()
+                dialog.dismiss()
+                observeData()
+            }
+            bySurnameBtn.setOnClickListener {
+                viewModel.getStudentsBySurname()
+                dialog.dismiss()
+                observeData()
+            }
+        }
+    }
+
 }
