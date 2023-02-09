@@ -1,47 +1,47 @@
 package com.example.sampleapp.ui.main
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.sampleapp.DispatcherProvider
 import com.example.sampleapp.database.Student
 import com.example.sampleapp.database.StudentDatabase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val database: StudentDatabase
+    database: StudentDatabase,
+    private val dispatcher: DispatcherProvider
 ) : ViewModel() {
     private val dataSource = database.databaseDao
     var students = dataSource.getAllStudents()
 
-    fun writeData(student: Student) {
-        dataSource.insert(student)
-        refresh()
-    }
-
-    private fun refresh() {
-        students = dataSource.getAllStudents()
-    }
-
-    fun getStudentByName(name: String): String {
-        return convertToString(dataSource.getByName(name))
-    }
-
-    fun showStudents() : String {
-        var res = ""
-        students.value?.forEach { stud ->
-            res += convertToString(stud)
+    fun insertStudent(student: Student) {
+        viewModelScope.launch(dispatcher.io) {
+            dataSource.insert(student)
         }
-        return res
     }
 
-    private fun convertToString(student: Student): String {
-        var res = ""
+    fun getStudentsByDepartment(): LiveData<List<Student>> {
+        viewModelScope.launch(dispatcher.io) {
+            students = dataSource.getStudentsByDep()
+        }
+        return students
+    }
 
-        res += "\n${student.studentId}\n"
-        res += "${student.studentName}\n"
-        res += "${student.studentSecondName}\n"
-        res += "${student.studentDepartment}\n"
+    fun getStudentsBySurname(): LiveData<List<Student>> {
+        viewModelScope.launch(dispatcher.io) {
+            students = dataSource.getStudentsBySurname()
+        }
+        return students
+    }
 
-        return res
+    fun getStudentsByName(): LiveData<List<Student>> {
+        viewModelScope.launch(dispatcher.io) {
+            students = dataSource.getAllStudents()
+        }
+        return students
     }
 }

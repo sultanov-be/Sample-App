@@ -20,6 +20,12 @@ interface StudentDatabaseDao {
     @Query("DELETE FROM student_list_table")
     fun clear()
 
-    @Query("SELECT * FROM student_list_table ORDER BY student_name DESC")
+    @Query("SELECT * FROM student_list_table ORDER BY student_name ASC")
     fun getAllStudents(): LiveData<List<Student>>
+
+    @Query("SELECT * FROM student_list_table ORDER BY student_department ASC")
+    fun getStudentsByDep(): LiveData<List<Student>>
+
+    @Query("SELECT * FROM student_list_table ORDER BY student_second_name ASC")
+    fun getStudentsBySurname(): LiveData<List<Student>>
 }
