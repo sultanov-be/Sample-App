@@ -1,10 +1,38 @@
 <resources>
     <string name="app_name">Sample App</string>
-    <string name="generate_student">Show</string>
-    <string name="sort_by">sort by</string>
-    <string name="initial_state">Initial state</string>
     <string name="department">Department</string>
-    <string name="create_random_student">Создать рандомного ученика</string>
-    <string name="student">Student:</string>
+    <string name="create_random_student">Generate a random student</string>
     <string name="sample_stud">Sultanov Bektur</string>
+    <string name="sort_by">Sort by</string>
+    <string name="by_department">BY department</string>
+    <string name="by_surname">By surname</string>
+    <string name="by_name">by name</string>
+    <string name="student">Student: </string>
+    <string-array name="names">
+        <item>Nikita</item>
+        <item>Ruslan</item>
+        <item>Bektur</item>
+        <item>Grigory</item>
+        <item>Alexander</item>
+        <item>Vladimir</item>
+        <item>Sadyr</item>
+    </string-array>
+    <string-array name="surnames">
+        <item>Putin</item>
+        <item>Agutin</item>
+        <item>Sultanov</item>
+        <item>Melkov</item>
+        <item>Makarov</item>
+        <item>Avdonin</item>
+        <item>Japarov</item>
+    </string-array>
+    <string-array name="departments">
+        <item>SFW</item>
+        <item>AMI</item>
+        <item>SOC</item>
+        <item>COM</item>
+        <item>ICP</item>
+        <item>LAS</item>
+        <item>ECO</item>
+    </string-array>
 </resources>
